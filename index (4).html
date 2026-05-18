@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Code Reviewer - Professional Code Analysis Tool</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h3><i class="fas fa-history"></i> Recent Reviews</h3>
+                <button id="clearAllHistoryBtn" class="icon-btn" title="Clear all history">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+            </div>
+            <div class="history-list" id="historyList"></div>
+            <div class="sidebar-footer">
+                <div class="storage-info">
+                    <i class="fas fa-database"></i>
+                    <span id="storageCount">0</span> / 5 reviews
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-panel">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div class="logo-area">
+                    <i class="fas fa-robot"></i>
+                    <h1>AI Code Reviewer <span class="pro-badge">FREE</span></h1>
+                </div>
+                <div class="controls">
+                    <div class="code-stats">
+                        <i class="fas fa-code"></i>
+                        <span id="charCount">0</span> chars
+                    </div>
+                    <select id="languageSelect" class="lang-select">
+                        <option value="auto">🔍 Auto-detect</option>
+                        <option value="javascript">📜 JavaScript</option>
+                        <option value="python">🐍 Python</option>
+                        <option value="cpp">⚡ C++</option>
+                        <option value="java">☕ Java</option>
+                        <option value="html">🌐 HTML</option>
+                        <option value="css">🎨 CSS</option>
+                    </select>
+                    <button id="formatCodeBtn" class="icon-btn" title="Format Code">
+                        <i class="fas fa-magic"></i>
+                    </button>
+                    <div id="beginnerToggle" class="toggle-beginner">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Beginner Mode</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Code Editor Section -->
+            <div class="editor-card">
+                <div class="editor-header">
+                    <div class="editor-tabs">
+                        <span class="active-tab"><i class="fas fa-code"></i> Code Editor</span>
+                        <span id="detectedLang" class="detected-lang"></span>
+                    </div>
+                    <div class="editor-actions">
+                        <button id="clearEditorBtn" class="editor-action-btn" title="Clear editor">
+                            <i class="fas fa-eraser"></i>
+                        </button>
+                        <button id="copyCodeBtn" class="editor-action-btn" title="Copy code">
+                            <i class="far fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+                <textarea id="codeInput" class="code-input" placeholder='// Paste your code here...
+// Example with common issues:
+
+function calculateTotal(price, tax) {
+    var total = price + tax;
+    return total;
+}
+
+var result = calculateTotal(100, "20");
+console.log(result);'></textarea>
+                <div class="editor-footer">
+                    <div class="shortcut-hint">
+                        <i class="fas fa-keyboard"></i> Press <kbd>Ctrl</kbd> + <kbd>Enter</kbd> to review
+                    </div>
+                    <button id="reviewBtn" class="review-btn">
+                        <i class="fas fa-magnifying-glass"></i> Review Code
+                    </button>
+                </div>
+            </div>
+
+            <!-- Results Area -->
+            <div id="resultsContainer"></div>
+        </div>
+    </div>
+
+    <div id="livePrediction"></div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
